@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "sort.h"
+
 void reverse(int *numbers, unsigned count) {
   int temp;
 	int i, j;
