@@ -10,6 +10,19 @@ int compare(int a, int b) {
 	    return a - b;
 }
 
+__attribute__ ((weak))
+int wrap(const void *a, const void *b) {
+	int value;
+	int x = *(const void *)a;
+	int y = *(const void *)b;
+	
+	if (x == y) value = 0;
+	else if (x > y) value = 1;
+	else if (x < y) value = -1;
+	
+	return value;
+}
+
 void bubble_sort(int *numbers, unsigned count) {
 	int temp;
 	int i, j;
@@ -58,18 +71,6 @@ void insertion_sort(int *numbers, unsigned count) {
 }
 
 sorting_fn sorting_fns[] = {bubble_sort, insertion_sort, NULL};
-
-int wrap(const void *a, const void *b) {
-	int value;
-	int x = *(const void *)a;
-	int y = *(const void *)b;
-	
-	if (x == y) value = 0;
-	else if (x > y) value = 1;
-	else if (x < y) value = -1;
-	
-	return value;
-}
 
 void my_qsort (int *numbers, unsigned count) {
 	qsort(numbers, count, sizeof(int), wrap);
